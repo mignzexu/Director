@@ -1,0 +1,15 @@
+{
+  "name": "agent-extensions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types test/audit.test.ts && node --experimental-strip-types test/extensions-routing.test.ts && node --experimental-strip-types test/registration.test.ts && node --experimental-strip-types test/runtime-events.test.ts && node --experimental-strip-types test/world-state.test.ts && node --experimental-strip-types test/plan-model.test.ts && node --experimental-strip-types test/solver-model.test.ts && node --experimental-strip-types test/director-model.test.ts && node --experimental-strip-types test/verification-model.test.ts && node --experimental-strip-types test/memory-model.test.ts && node --experimental-strip-types test/recovery-model.test.ts && node --experimental-strip-types test/research-model.test.ts && node --experimental-strip-types test/runtime-ledger.test.ts && node --experimental-strip-types test/grand-tour.test.ts && node --experimental-strip-types test/boundary.test.ts && node --experimental-strip-types test/concurrent-write.test.ts && node --experimental-strip-types test/flight-recorder.test.ts && node --experimental-strip-types test/completion-gate.test.ts",
+    "typecheck": "tsc --noEmit",
+    "gate": "npm run typecheck && npm run test"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.18.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

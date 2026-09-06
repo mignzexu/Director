@@ -1,0 +1,8 @@
+node_modules/
+.extensions/state/
+.extensions/node_modules/
+.extensions/tmp/
+.extensions/test-results/
+.agent-platform/
+.migration-tmp/
+.zcode/

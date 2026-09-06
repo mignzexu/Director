@@ -1,0 +1,40 @@
+{
+  "goal": "调整现有配置默认值并保持既有接口",
+  "schemaVersion": 2,
+  "outcome": {
+    "id": "O1",
+    "mission": {
+      "type": "outcome",
+      "kind": "engineering",
+      "title": "配置默认值调整",
+      "intent": "新默认值生效且既有接口行为不变"
+    }
+  },
+  "context": {
+    "known": ["src/config.ts:DEFAULT_TIMEOUT - 默认值由单一常量提供"],
+    "unknown": [],
+    "constraints": ["显式配置值的行为保持不变"]
+  },
+  "stages": [
+    {
+      "id": "S1",
+      "title": "调整与验证",
+      "exit": "新默认值生效且兼容行为不变",
+      "nodes": [
+        {
+          "id": "S1-1-1",
+          "mission": {
+            "type": "task",
+            "kind": "engineering",
+            "title": "更新默认值并验证兼容行为",
+            "intent": "修改唯一默认值来源；产出：更新后的默认配置行为",
+            "scope": ["src/config.ts:DEFAULT_TIMEOUT"]
+          },
+          "verifier": "run: 运行配置模块的现有测试",
+          "uncertainty": "E0",
+          "deliverable": "新默认值生效且兼容行为不变"
+        }
+      ]
+    }
+  ]
+}

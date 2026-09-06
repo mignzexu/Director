@@ -1,0 +1,99 @@
+{
+  "goal": "为博客系统补齐评论功能并上线",
+  "schemaVersion": 2,
+  "outcome": {
+    "id": "O1",
+    "mission": {
+      "type": "outcome",
+      "kind": "hybrid",
+      "title": "评论功能上线",
+      "intent": "读者可留言、站主可审核；上线即端到端可用"
+    }
+  },
+  "context": {
+    "known": [
+      "现有博客为静态站点，部署流程已自动化",
+      "user-storage::provider 已 VERIFIED（值为 hosted-service）"
+    ],
+    "unknown": ["评论数据存放位置（自建库还是第三方）"],
+    "constraints": ["不引入服务端渲染"],
+    "risks": ["第三方服务的审核策略不可控"]
+  },
+  "stages": [
+    {
+      "id": "S1",
+      "title": "方案确定",
+      "exit": "数据方案已确认",
+      "nodes": [
+        {
+          "id": "S1-1-1",
+          "mission": {
+            "type": "decision",
+            "kind": "decision",
+            "title": "确定评论数据方案",
+            "intent": "对比自建库与第三方托管，产出选型结论",
+            "options": ["自建库（完全可控，成本高）", "第三方托管（快速，审核策略受限）"]
+          },
+          "deliverable": "选型结论记录（含对比矩阵与理由）",
+          "verifier": "选型记录存在且经站主确认"
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "title": "实现与对齐",
+      "exit": "组件实现通过验证且审核流程对齐",
+      "nodes": [
+        {
+          "id": "S2-1-2",
+          "mission": {
+            "type": "task",
+            "kind": "engineering",
+            "title": "实现评论组件与存储接入",
+            "intent": "按 S1-1-1 的选型实现前端组件与数据接入",
+            "scope": ["src/components/Comments.tsx（新增）", "src/api/comments.ts（新增）"]
+          },
+          "dependsOn": ["S1-1-1"],
+          "preconditionFacts": ["comment-storage::decision"],
+          "verifier": "run: node test/comment.test.mjs",
+          "uncertainty": "E1",
+          "deliverable": "评论组件代码与测试"
+        },
+        {
+          "id": "S2-1-3",
+          "mission": {
+            "type": "task",
+            "kind": "communication",
+            "title": "审核流程与站主对齐",
+            "intent": "站主确认审核口径与操作路径",
+            "audience": ["站主"]
+          },
+          "dependsOn": ["S1-1-1"],
+          "verifier": "站主书面确认审核流程",
+          "uncertainty": "E0",
+          "deliverable": "审核操作说明"
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "title": "上线验证",
+      "exit": "全链路在真实环境可用",
+      "nodes": [
+        {
+          "id": "S3-1-1",
+          "mission": {
+            "type": "verification",
+            "kind": "hybrid",
+            "title": "端到端上线验证",
+            "intent": "评论提交、审核、展示全链路在真实环境可用"
+          },
+          "dependsOn": ["S2-1-2", "S2-1-3"],
+          "verifier": "run: node e2e/comment-flow.mjs",
+          "uncertainty": "E0",
+          "deliverable": "上线验证记录"
+        }
+      ]
+    }
+  ]
+}

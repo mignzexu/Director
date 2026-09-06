@@ -1,0 +1,84 @@
+{
+  "goal": "为博客系统补齐评论功能并上线",
+  "schemaVersion": 2,
+  "context": {
+    "known": [
+      "现有博客为静态站点，部署流程已自动化",
+      "user-storage::provider 已 VERIFIED（值为 hosted-service）"
+    ],
+    "unknown": ["评论数据存放位置（自建库还是第三方）"],
+    "constraints": ["不引入服务端渲染"],
+    "risks": ["第三方服务的审核策略不可控"]
+  },
+  "stages": [
+    { 
+      "id": "S1", 
+      "milestone": "", 
+      "title": "", 
+      "exit": "", 
+      "nodes":[
+        [
+          {
+            "id": "...",
+            "mission":{
+              "type": "...",
+              "kind": "...",
+              "title": "...",
+              "intent": "..."
+            }
+          }
+        ],
+        [
+          [
+            {
+              "id": "...",
+              "mission":{
+                "type": "...",
+                "kind": "...",
+                "title": "...",
+                "intent": "..."
+              }
+            }
+          ],
+          [
+            {
+              "id": "...",
+              "mission":{
+                "type": "...",
+                "kind": "...",
+                "title": "...",
+                "intent": "..."
+              }
+            }
+          ],
+          [
+            {
+              "id": "...",
+              "mission":{
+                "type": "...",
+                "kind": "...",
+                "title": "...",
+                "intent": "..."
+              }
+            }
+          ]
+        ],
+        [
+          {
+            "id": "...",
+            "mission":{
+              "type": "...",
+              "kind": "...",
+              "title": "...",
+              "intent": "..."
+            }
+          }
+        ],
+        ...
+
+      ] 
+    },
+    ...
+
+  ]
+}

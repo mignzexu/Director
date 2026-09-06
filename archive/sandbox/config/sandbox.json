@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "backend": "windows-appcontainer",
+  "profile": "agent-platform-main",
+  "network": "deny",
+  "filesystem": {
+    "workspace_read": true,
+    "workspace_write": true,
+    "git_read": true,
+    "git_write": false,
+    "outside_read": false,
+    "outside_write": false,
+    "protected_paths": [
+      ".agent-platform/config",
+      ".agent-platform/state",
+      ".opencode"
+    ]
+  },
+  "process": {
+    "default_timeout_ms": 120000,
+    "max_output_chars": 1000000,
+    "default_shell": "cmd",
+    "inline_output_chars": 30000
+  },
+  "environment": {
+    "allow": [
+      "PATH",
+      "SystemRoot",
+      "SystemDrive",
+      "ComSpec",
+      "PATHEXT",
+      "WINDIR",
+      "OS",
+      "LOCALAPPDATA",
+      "NUMBER_OF_PROCESSORS",
+      "PROCESSOR_ARCHITECTURE",
+      "PROCESSOR_IDENTIFIER",
+      "PROGRAMFILES",
+      "PROGRAMFILES(X86)",
+      "PROGRAMDATA",
+      "PUBLIC",
+      "ALLUSERSPROFILE",
+      "USERNAME",
+      "COMPUTERNAME"
+    ],
+    "drop_patterns": [
+      "KEY$",
+      "TOKEN$",
+      "SECRET",
+      "PASSWORD",
+      "PASSWD",
+      "CREDENTIAL",
+      "^AWS",
+      "^AZURE",
+      "^GCP_",
+      "^GOOGLE_",
+      "^SSH_",
+      "^GITHUB_",
+      "^GITLAB_",
+      "^OPENAI_",
+      "^ANTHROPIC_",
+      "^HF_",
+      "^HUGGING",
+      "^DOCKER_",
+      "^KUBE"
+    ]
+  }
+}
